@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "-4"
+  name: argocd
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: platform
+  sources:
+    - chart: argo-cd
+      helm:
+        valueFiles:
+        - $values/argocd/base/values/argocd.yaml
+      repoURL: https://argoproj.github.io/argo-helm
+      targetRevision: 5.51.2
+    - ref: values
+      repoURL: https://github.com/irizzante/cluster-addons.git
+      targetRevision: HEAD
+  destination:
+    namespace: argocd
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - PruneLast=true
+    - CreateNamespace=true

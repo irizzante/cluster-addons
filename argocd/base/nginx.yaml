@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "-5"
+  name: nginx
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: platform
+  sources:
+    - chart: ingress-nginx
+      helm:
+        valueFiles:
+        - $values/argocd/base/values/nginx.yaml
+      repoURL: https://kubernetes.github.io/ingress-nginx
+      targetRevision: 4.8.1
+    - ref: values
+      repoURL: https://github.com/irizzante/cluster-addons.git
+      targetRevision: HEAD
+  destination:
+    namespace: nginx
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - PruneLast=true
+    - CreateNamespace=true
