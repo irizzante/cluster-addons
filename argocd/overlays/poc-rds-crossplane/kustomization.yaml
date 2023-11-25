@@ -3,6 +3,7 @@ kind: Kustomization
 
 resources:
 - ../../base
+- platform-project.yaml
 
 components:
   - ../../components/crossplane
