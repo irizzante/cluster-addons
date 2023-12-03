@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: bitwarden-cli
-          image: registry.gitlab.com/ttblt-oss/docker-bw:2023.1.0
+          image: rockaut/bitwarden-cli
           imagePullPolicy: IfNotPresent
           env:
             - name: BW_HOST
