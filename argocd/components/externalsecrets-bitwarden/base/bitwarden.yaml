@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: bitwarden-cli
-          image: rockaut/bitwarden-cli
+          image: irizzant/bitwarden-cli:latest
           imagePullPolicy: IfNotPresent
           env:
             - name: BW_HOST
