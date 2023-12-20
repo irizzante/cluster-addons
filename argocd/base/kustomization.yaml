@@ -5,3 +5,4 @@ resources:
 - nginx.yaml
 - argocd.yaml
 - external-secrets.yaml
+- appprojects.yaml
