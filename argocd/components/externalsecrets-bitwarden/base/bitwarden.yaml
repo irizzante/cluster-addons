@@ -106,7 +106,7 @@ spec:
       app.kubernetes.io/name: bitwarden-cli
   ingress:
   - from:
-    - namespaceSelector:
+    - namespaceSelector: {}
     - podSelector:
         matchLabels:
           app.kubernetes.io/instance: external-secrets
