@@ -67,8 +67,4 @@ configs:
           end
           return hs
 
-  repositories:
-    private-helm-repo:
-      url: https://production.eng.it/gitlab/api/v4/projects/13518/packages/helm/stable
-      name: production-helm-repo
-      type: helm
+  
